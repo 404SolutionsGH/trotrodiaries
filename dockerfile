@@ -1,13 +1,16 @@
-FROM node:10
+FROM node:15
 
-WORKDIR /home/koose/Downloads/trotrodiaries-main
 
-COPY package*.json /.
+RUN mkdir -p /usr/src/app
 
-RUN npm install 
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN yarn install 
 
 COPY . .
 
 EXPOSE 8000
 
-CMD ["yarn", "start"]
+CMD ["yarn", "build"]
